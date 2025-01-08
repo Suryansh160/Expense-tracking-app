@@ -5,10 +5,11 @@ import '../models/transaction.dart';
 
 class UserTransactions extends StatefulWidget {
   @override
-  State<UserTransactions> createState() => _user_transactionsState();
+  State<UserTransactions> createState() =>
+      _UserTransactionsState(); // Corrected capitalization
 }
 
-class UserTransactionsState extends State<UserTransactions> {
+class _UserTransactionsState extends State<UserTransactions> {
   final List<Transaction> _userTransactions = [
     Transaction(
       id: 't1',
@@ -23,12 +24,26 @@ class UserTransactionsState extends State<UserTransactions> {
       date: DateTime.now(),
     ),
   ];
+
+  void _addNewTransaction(String txTitle, double txAmount) {
+    final newTx = Transaction(
+      title: txTitle,
+      amount: txAmount,
+      date: DateTime.now(),
+      id: DateTime.now().toString(),
+    );
+
+    setState(() {
+      _userTransactions.add(newTx);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        NewTransaction(),
-        TransactionList(),
+        NewTransaction(_addNewTransaction),
+        TransactionList(_userTransactions),
       ],
     );
   }
