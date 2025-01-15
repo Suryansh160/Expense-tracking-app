@@ -11,7 +11,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Xpense Tracker',
+      title: 'CashCanvas',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.purple),
       home: MyHomePage(),
     );
@@ -70,17 +71,42 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.purple,
-        foregroundColor: Colors.white,
-        title: Text('Xpense Tracker'),
-        actions: <Widget>[
-          IconButton(
-            onPressed: () => _strtAddNewTrnsctn(context),
-            icon: Icon(Icons.add),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.purple,
+      //   foregroundColor: Colors.white,
+      //   title: Text('CashCanvas'),
+      //   actions: <Widget>[
+      //     IconButton(
+      //       onPressed: () => _strtAddNewTrnsctn(context),
+      //       icon: Icon(Icons.add),
+      //     ),
+      //   ],
+      // ),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Color(0xFFA34D8A), Color(0xFF630A8E)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
           ),
-        ],
+          child: AppBar(
+            backgroundColor: Colors.transparent, // Make AppBar transparent
+            elevation: 0, // Optional: Remove shadow
+            title: Text('CashCanvas'),
+            foregroundColor: Colors.white,
+            actions: <Widget>[
+              IconButton(
+                onPressed: () => _strtAddNewTrnsctn(context),
+                icon: Icon(Icons.add),
+              ),
+            ],
+          ),
+        ),
       ),
+
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[

@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 class TransactionList extends StatefulWidget {
   final List<Transaction> transactions;
   final Function deleteTx;
-  TransactionList(this.transactions);
+  TransactionList(this.transactions, this.deleteTx);
 
   @override
   _TransactionListState createState() => _TransactionListState();
