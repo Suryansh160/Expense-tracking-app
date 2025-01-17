@@ -15,11 +15,16 @@ class _TransactionListState extends State<TransactionList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 475, // Set height for scrollable area
+      // Set height for scrollable area
       child: widget.transactions.isEmpty
           ? Column(
               children: <Widget>[
-                Text('No Transactions'),
+                Text(
+                  'No Transactions',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
                 SizedBox(
                   height: 10,
                 ),

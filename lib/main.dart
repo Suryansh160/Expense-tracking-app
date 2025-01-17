@@ -70,6 +70,31 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final appBar = PreferredSize(
+      preferredSize: Size.fromHeight(kToolbarHeight),
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFFA34D8A), Color(0xFF630A8E)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: AppBar(
+          backgroundColor: Colors.transparent, // Make AppBar transparent
+          elevation: 0, // Optional: Remove shadow
+          title: Text('CashCanvas'),
+          foregroundColor: Colors.white,
+          actions: <Widget>[
+            IconButton(
+              onPressed: () => _strtAddNewTrnsctn(context),
+              icon: Icon(Icons.add),
+            ),
+          ],
+        ),
+      ),
+    );
+
     return Scaffold(
       // appBar: AppBar(
       //   backgroundColor: Colors.purple,
@@ -82,36 +107,23 @@ class _MyHomePageState extends State<MyHomePage> {
       //     ),
       //   ],
       // ),
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(kToolbarHeight),
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Color(0xFFA34D8A), Color(0xFF630A8E)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-          child: AppBar(
-            backgroundColor: Colors.transparent, // Make AppBar transparent
-            elevation: 0, // Optional: Remove shadow
-            title: Text('CashCanvas'),
-            foregroundColor: Colors.white,
-            actions: <Widget>[
-              IconButton(
-                onPressed: () => _strtAddNewTrnsctn(context),
-                icon: Icon(Icons.add),
-              ),
-            ],
-          ),
-        ),
-      ),
+      appBar: appBar,
 
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Chart(_recentTransactions),
-          TransactionList(_userTransactions, _deleteTransaction),
+          Container(
+              height: (MediaQuery.of(context).size.height -
+                      appBar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) *
+                  0.22,
+              child: Chart(_recentTransactions)),
+          Container(
+              height: (MediaQuery.of(context).size.height -
+                      appBar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) *
+                  0.75,
+              child: TransactionList(_userTransactions, _deleteTransaction)),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
